@@ -1,5 +1,5 @@
 <!doctype html><meta charset=utf-8><body>sending…<script>
 (async()=>{const paths=new URLSearchParams(location.search).get('p').split(',');const out=[];
 for(const p of paths){const b=await (await fetch(p+'?'+Date.now())).blob();out.push({name:p.replace(/\//g,'_'),type:b.type,buf:await b.arrayBuffer()})}
-window.opener.postMessage({storeFiles:out},'*');document.body.textContent='sent '+out.length})();
+(window.opener||window.parent).postMessage({storeFiles:out},'*');document.body.textContent='sent '+out.length})();
 </script>
